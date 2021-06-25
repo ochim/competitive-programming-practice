@@ -19,27 +19,23 @@ private fun readIntArray(n: Int = 0) =
     if (n == 0) readList().run { IntArray(size) { get(it).toInt() } } else IntArray(n) { readInt() }
 
 /*
-* TapeEquilibrium
+* Time Complexity: TapeEquilibrium
 */
 fun solution3(A: IntArray): Int {
     val N = A.size
     var min = Int.MAX_VALUE
 
+    val map = mutableMapOf<Int,Int>()
+    // 配列Aについて索引iまでの各要素の和を求め、mapに格納する
+    map[0] = A[0]
+    for (i in 1 until N) {
+        map[i] = map[i-1]!! + A[i]
+    }
+
     // N is an integer within the range [2..100,000]
     for (P in 1 until N) {
-        var sum1 = 0
-        for (i in 0 until P) {
-            sum1 += A[i]
-        }
-
-        var sum2 = 0
-        for (i in P until N) {
-            sum2 += A[i]
-        }
-
-        val r = (sum1 - sum2).absoluteValue
+        val r = (map[P-1]!! * 2 - map[N-1]!!).absoluteValue
         if (r <= min) min = r
-
     }
     return min
 }
