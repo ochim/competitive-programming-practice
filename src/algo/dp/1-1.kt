@@ -1,5 +1,8 @@
 package algo.dp
 
+/*
+Q1-1
+ */
 fun main() {
     val A = readLine()!!.split(" ").map{ it.toInt() }
     val N = A[0]

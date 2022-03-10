@@ -2,6 +2,9 @@ package algo.dp
 
 import kotlin.math.min
 
+/*
+Q1-2
+ */
 fun main() {
     val N = readLine()!!.toInt()
     val A = readLine()!!.split(" ").map{ it.toInt() }
