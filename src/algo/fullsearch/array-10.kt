@@ -17,22 +17,23 @@ private fun readInt() = read().toInt()
 private fun readIntList() = readList().map { it.toInt() }
 
 /*
-* ABC 228 C
-*/
-fun main(args: Array<String>) {
+ * 配列の全探索10
+ */
+fun main() {
     val N = readInt()
-    val K = readInt()
-    val P = mutableListOf<Int>()
-    repeat(N) {
-        val j = readIntList()
-        P.add(j.sum())
+    val list = readIntList()
+
+    val count = MutableList(9) { 0 }
+    for (v in list) {
+        count[v-1]++
     }
 
-    // 3日目までの上位得点順を作る
-    val Q = P.sorted().reversed()
-
-    for (i in 0 until N) {
-        val highScore = P[i] + 300
-        if (highScore >= Q[K-1]) println("Yes") else println("No")
+    var index = 0
+    for (i in 0 until 9) {
+        if (count[index] < count[i]) {
+            index = i
+        }
     }
+
+    println(index + 1)
 }

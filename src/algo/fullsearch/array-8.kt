@@ -5,6 +5,7 @@ private val INPUT = System.`in`
 private val bufferedReader = INPUT.bufferedReader()
 private fun readLn() = bufferedReader.readLine()!!
 
+private fun readList() = readLn().split(' ')
 private var tokenizer = StringTokenizer("")
 private fun read(): String {
     while (tokenizer.hasMoreTokens().not()) tokenizer = StringTokenizer(readLn(), " ")
@@ -13,19 +14,21 @@ private fun read(): String {
 
 private fun readInt() = read().toInt()
 
-/*
- * ABC 228 A
- */
-fun main(args: Array<String>) {
-    val S = readInt()
-    val T = readInt()
-    val X = readInt()
+private fun readIntList() = readList().map { it.toInt() }
 
-    if (S < T) {
-        // S時からT時まで
-        if ((S <= X) && (X < T)) println("Yes") else println("No")
-    } else {
-        // Sから0時まで、0時からT時まで
-        if ((X < T) || (S <= X)) println("Yes") else println("No")
+/*
+ * 配列の全探索8
+ */
+fun main() {
+    val N = readInt()
+    val list = readIntList()
+    check(list.isNotEmpty())
+
+    var min = list.first()
+    for (i in 0 until N) {
+        if (min > list[i]) {
+            min = list[i]
+        }
     }
+    println(min)
 }

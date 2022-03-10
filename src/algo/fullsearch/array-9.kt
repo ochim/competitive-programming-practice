@@ -14,25 +14,19 @@ private fun read(): String {
 
 private fun readInt() = read().toInt()
 
-private fun readIntArray(n: Int = 0) =
-    if (n == 0) readList().run { IntArray(size) { get(it).toInt() } } else IntArray(n) { readInt() }
+private fun readIntList() = readList().map { it.toInt() }
 
 /*
- * ABC 228 B
+ * 配列の全探索9
  */
-fun main(args: Array<String>) {
+fun main() {
     val N = readInt()
-    val X = readInt()
-    val A = readIntArray(N)
-//    println(A.toList())
+    val list = readIntList()
 
-    val known = BooleanArray(N+1) { false }
-    var i = X
-    do {
-        known[i] = true
-        i = A[i-1]
-    } while (!known[i])
+    val count = MutableList(9) { 0 }
+    for (v in list) {
+        count[v-1]++
+    }
 
-    val t = known.filter { it }
-    println(t.size)
+    count.forEach { println(it) }
 }
