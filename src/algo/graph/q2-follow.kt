@@ -12,14 +12,15 @@ fun main() {
 3 1
 */
     val (N, M) = readLine()!!.split(" ").map { it.toInt() }
-    val graph = List(N) { MutableList<Int>(N) {0} }
+    val graph = Array(N) { mutableListOf<Int>() }
     (0 until M).map {
         val (A, B) = readLine()!!.split(" ").map { it.toInt() }
-        graph[A][B] = 1
+        graph[A].add(B)
     }
     for (i in 0 until N) {
-        for (j in 0 until N) {
-            if (graph[i][j] == 1) print("$j ")
+        val sort = graph[i].toIntArray().sorted()
+        for (j in sort) {
+            print("$j ")
         }
         println()
     }
