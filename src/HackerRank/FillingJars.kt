@@ -11,17 +11,14 @@ package HackerRank
 
 fun solve(n: Int, operations: Array<Array<Int>>): Long {
     // Write your code here
-    val jars = LongArray(n) { 0 }
+    var sum = 0L
     for (operation in operations) {
         val a = operation[0]
         val b = operation[1]
         val k = operation[2]
-        for (i in a..b) {
-            jars[i - 1] += k.toLong()
-        }
+        sum += (b - a + 1) * (k.toLong())
     }
-//    println(jars.joinToString(separator = ","))
-    return jars.sum() / n.toLong()
+    return sum / n.toLong()
 }
 
 fun main(args: Array<String>) {
