@@ -49,7 +49,7 @@ fun main() {
         maze[x][y] = VISITED
         if (stackTop < stackVisit.size) stackVisit[stackTop] = Pair(x, y)
         else stackVisit.add(Pair(x, y))
-        println("$transition: " + stackVisit[stackTop])
+        println("$transition: " + Pair(x, y) + " size:${stackTop+1}")
 
         if (x == goalX && y == goalY) {
             paths.add(MutableList(stackTop + 1) { Pair(0, 0) })
@@ -78,7 +78,7 @@ fun main() {
             }
             stackTop -= 1
             transition += 1
-            println("$transition: " + stackVisit[stackTop])
+            if (stackTop > 0) println("$transition: " + stackVisit[stackTop-1] + " size:$stackTop")
         }
         maze[x][y] = OK
     }
@@ -89,4 +89,5 @@ fun main() {
     } else {
         paths.forEach { println(it) }
     }
+
 }
